@@ -2247,16 +2247,6 @@ class HpricotScanner
 
             space = @buffer_size - @have
 
-            if space == 0 then
-=begin
-               buffer_size += BUFSIZE;
-               char[] new_buf = new char[buffer_size];
-               System.arraycopy(buf, 0, new_buf, 0, buf.length);
-               buf = new_buf;
-               space = buffer_size - have;
-=end
-            end
-
             str = source.respond_to?('read') ? source.read(space) : source[@nread, space]
             len = str.length
 
@@ -2989,7 +2979,6 @@ class HpricotScanner
                 end
             end
                 end
-
 
             if @cs == HpricotScanner.hpricot_scan_error then
                 raise Hpricot::ParseError, @tag[0].nil? ? 
