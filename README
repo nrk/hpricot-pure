@@ -1,0 +1,21 @@
+hpricot-pure - simply Hpricot, just made "pure".
+===============================================================================
+
+PREMISE: THIS IS JUST AN EXPERIMENT
+
+Ok I was just bored, but as an unexpected result of my boredom, hpricot-pure 
+turned out to be actually functioning after a couple of hours of laid-back 
+hacking so I thought "why not releasing the source code?".
+
+hpricot-pure is a version of Hpricot that doesn't rely on a native extension, 
+instead it is written entirely in pure Ruby. It is currently based on Hpricot 
+0.6.164 and I have no plans to support later versions of Hpricot, but I might 
+reconsider this after pushing out the new features of Hpricot into 
+ironruby-hpricot.
+
+Ok so now what is the point of hpricot-pure? Well, as I have said I was bored, 
+there is really nothing much to say. But I can't exclude that someone may find 
+it useful :)
+
+NOTE: fast_xs is still missing, which means all the tests where XML/HTML 
+character escaping matters will fail until I get it done.
