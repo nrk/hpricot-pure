@@ -1,6 +1,7 @@
+require 'hpricot/xchar'
+
 class String
-    # TODO: not yet implemented, stay tuned :)
     def fast_xs
-        self
+        Hpricot.xs(self)
     end
 end
