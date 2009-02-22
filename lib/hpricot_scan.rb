@@ -2247,6 +2247,11 @@ class HpricotScanner
 
             space = @buffer_size - @have
 
+            if space == 0 then
+                @buffer_size += DEFAULT_BUFFER_SIZE;
+                space = @buffer_size - @have;
+            end
+
             str = source.respond_to?('read') ? source.read(space) : source[@nread, space]
             len = str.length
 
