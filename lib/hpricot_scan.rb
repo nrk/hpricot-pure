@@ -96,25 +96,25 @@ class HpricotScanner
             when @tag:
                 if @mark_tag == -1 or e == @mark_tag then
                     @tag[0] = ''
-                else
+                elsif e > @mark_tag then
                     @tag[0] = @buf[@mark_tag, e - @mark_tag]
                 end
             when @akey:
                 if @mark_akey == -1 or e == @mark_akey then
                     @akey[0] = ''
-                else
+                elsif e > @mark_akey then
                     @akey[0] = @buf[@mark_akey, e - @mark_akey]
                 end
             when @aval:
                 if @mark_aval == -1 or e == @mark_aval then
                     @aval[0] = ''
-                else
+                elsif e > @mark_aval then
                     @aval[0] = @buf[@mark_aval, e - @mark_aval]
                 end
         end
     end
 
-    def CAT(n, e)
+    def CAT(n, e) 
         if n[0].nil? then
             SET(n, e)
         else
@@ -156,7 +156,7 @@ class HpricotScanner
         else
             @mark_tag = @p
         end
-        
+
         @attr, @tag[0], @text = nil, nil, true
     end
 
@@ -2280,7 +2280,7 @@ class HpricotScanner
                 _out = 40
                 while true
                 if _goto_level <= 0
-                if @p == pe -1
+                if @p == pe - 1
                     _goto_level = _test_eof
                     next
                 end
@@ -2962,12 +2962,11 @@ class HpricotScanner
                 case HpricotScanner.hpricot_scan_to_state_actions[@cs] 
                 when 66 then
                     begin
-            #@ts = nil;		end
             @ts = -1;		end
                 end
 
-                @p = @p + 1
-                if @p != pe -1
+                @p += 1
+                if @p != pe - 1
                     _goto_level = _resume
                     next
                 end
@@ -3004,12 +3003,11 @@ class HpricotScanner
             end
 
             if @ts == -1 then
-                @buf = ''
                 @have = 0
                 if @mark_tag != -1 and @text then
                     if @done then
                         if @mark_tag < @p - 1 then
-                            CAT(@tag, @p - 1)
+                            CAT(@tag, @p)
                             ELE(:text)
                         end
                     else
@@ -3017,6 +3015,7 @@ class HpricotScanner
                     end
                 end
                 @mark_tag = 0
+                @buf = ''
             else
                 @have = pe - @ts
                 @buf  = @buf[@ts, @have]
