@@ -3,10 +3,10 @@ module Hpricot
 
     class << self
         attr_accessor :buffer_size
-    end
 
-    def self.scan(source, &block)
-        HpricotScanner.new.hpricot_scan(source,&block)
+        def scan(source, &block)
+            HpricotScanner.new.hpricot_scan(source,&block)
+        end
     end
 end
 
