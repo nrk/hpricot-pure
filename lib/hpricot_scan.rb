@@ -14,6 +14,9 @@ class HpricotScanner
     NO_WAY_SERIOUSLY = "*** This should not happen, please send a bug report with the HTML you're parsing to why@whytheluckystiff.net.  So sorry!"
     DEFAULT_BUFFER_SIZE = 16384
 
+    SINGLE_QUOTE = ?'
+    DOUBLE_QUOTE = ?"
+
     def initialize
         @cs        = nil
         @act       = nil
@@ -2320,7 +2323,7 @@ class HpricotScanner
                 when 31 then
                     begin
              
-                if @buf[@p-1] == '"' || @buf[@p-1] == '\'' then SET(@aval, @p-1)
+                if @buf[@p-1] == DOUBLE_QUOTE || @buf[@p-1] == SINGLE_QUOTE then SET(@aval, @p-1)
                 else SET(@aval, @p) end
                     end
                 when 23 then
@@ -2505,7 +2508,7 @@ class HpricotScanner
              @mark_aval = @p; 		end
                     begin
              
-                if @buf[@p-1] == '"' || @buf[@p-1] == '\'' then SET(@aval, @p-1)
+                if @buf[@p-1] == DOUBLE_QUOTE || @buf[@p-1] == SINGLE_QUOTE then SET(@aval, @p-1)
                 else  SET(@aval, @p) end
                     end
                 when 8 then
@@ -2554,7 +2557,7 @@ class HpricotScanner
                 when 32 then
                     begin
              
-                if @buf[@p-1] == '"' || @buf[@p-1] == '\'' then SET(@aval, @p-1)
+                if @buf[@p-1] == DOUBLE_QUOTE || @buf[@p-1] == SINGLE_QUOTE then SET(@aval, @p-1)
                 else SET(@aval, @p) end
                     end
                     begin
@@ -2566,7 +2569,7 @@ class HpricotScanner
              SET(@akey, @p); 		end
                     begin
              
-                if @buf[@p-1] == '"' || @buf[@p-1] == '\'' then SET(@aval, @p-1)
+                if @buf[@p-1] == DOUBLE_QUOTE || @buf[@p-1] == SINGLE_QUOTE then SET(@aval, @p-1)
                 else SET(@aval, @p) end
                     end
                 when 24 then
@@ -2598,7 +2601,7 @@ class HpricotScanner
                     end
                     begin
              
-                if @buf[@p-1] == '"' || @buf[@p-1] == '\'' then SET(@aval, @p-1)
+                if @buf[@p-1] == DOUBLE_QUOTE || @buf[@p-1] == SINGLE_QUOTE then SET(@aval, @p-1)
                 else SET(@aval, @p) end
                     end
                 when 28 then
@@ -2688,7 +2691,7 @@ class HpricotScanner
              @mark_aval = @p; 		end
                     begin
              
-                if @buf[@p-1] == '"' || @buf[@p-1] == '\'' then SET(@aval, @p-1)
+                if @buf[@p-1] == DOUBLE_QUOTE || @buf[@p-1] == SINGLE_QUOTE then SET(@aval, @p-1)
                 else SET(@aval, @p) end
                     end
                     begin
@@ -2704,13 +2707,13 @@ class HpricotScanner
                     end
                     begin
              
-                if @buf[@p-1] == '"' || @buf[@p-1] == '\'' then SET(@aval, @p-1)
+                if @buf[@p-1] == DOUBLE_QUOTE || @buf[@p-1] == SINGLE_QUOTE then SET(@aval, @p-1)
                 else SET(@aval, @p) end
                     end
                 when 37 then
                     begin
              
-                if @buf[@p-1] == '"' || @buf[@p-1] == '\'' then SET(@aval, @p-1)
+                if @buf[@p-1] == DOUBLE_QUOTE || @buf[@p-1] == SINGLE_QUOTE then SET(@aval, @p-1)
                 else SET(@aval, @p) end
                     end
                     begin
@@ -2721,8 +2724,8 @@ class HpricotScanner
                     end
                 when 33 then
                     begin
-             
-                if @buf[@p-1] == '"' || @buf[@p-1] == '\'' then SET(@aval, @p-1)
+
+                if @buf[@p-1] == DOUBLE_QUOTE || @buf[@p-1] == SINGLE_QUOTE then SET(@aval, @p-1)
                 else SET(@aval, @p) end
                     end
                     begin
@@ -2758,7 +2761,7 @@ class HpricotScanner
                     end
                     begin
              
-                if @buf[@p-1] == '"' || @buf[@p-1] == '\'' then SET(@aval, @p-1);
+                if @buf[@p-1] == DOUBLE_QUOTE || @buf[@p-1] == SINGLE_QUOTE then SET(@aval, @p-1);
                 else SET(@aval, @p) end
                     end
                     begin
@@ -2834,7 +2837,7 @@ class HpricotScanner
                 when 38 then
                     begin
              
-                if (@buf[@p-1] == '"' || @buf[@p-1] == '\'') then SET(@aval, @p-1)
+                if (@buf[@p-1] == DOUBLE_QUOTE || @buf[@p-1] == SINGLE_QUOTE) then SET(@aval, @p-1)
                 else SET(@aval, @p); end
                     end
                     begin
@@ -2865,7 +2868,7 @@ class HpricotScanner
                     end
                     begin
              
-                if @buf[@p-1] == '"' || @buf[@p-1] == '\'' then SET(@aval, @p-1)
+                if @buf[@p-1] == DOUBLE_QUOTE || @buf[@p-1] == SINGLE_QUOTE then SET(@aval, @p-1)
                 else SET(@aval, @p); end
                     end
                     begin
@@ -2896,7 +2899,7 @@ class HpricotScanner
                     end
                     begin
              
-                if @buf[@p-1] == '"' || @buf[@p-1] == '\'' then SET(@aval, @p-1)
+                if @buf[@p-1] == DOUBLE_QUOTE || @buf[@p-1] == SINGLE_QUOTE then SET(@aval, @p-1)
                 else SET(@aval, @p); end
                     end
                     begin
@@ -2909,7 +2912,7 @@ class HpricotScanner
              @mark_aval = @p; 		end
                     begin
              
-                if @buf[@p-1] == '"' || @buf[@p-1] == '\'' then SET(@aval, @p-1)
+                if @buf[@p-1] == DOUBLE_QUOTE || @buf[@p-1] == SINGLE_QUOTE then SET(@aval, @p-1)
                 else SET(@aval, @p); end
                     end
                     begin
@@ -2930,7 +2933,7 @@ class HpricotScanner
                     end
                     begin
              
-                if @buf[@p-1] == '"' || @buf[@p-1] == '\'' then SET(@aval, @p-1)
+                if @buf[@p-1] == DOUBLE_QUOTE || @buf[@p-1] == SINGLE_QUOTE then SET(@aval, @p-1)
                 else SET(@aval, @p); end
                     end
                     begin
@@ -2941,7 +2944,7 @@ class HpricotScanner
                     end
                     begin
              
-                if @buf[@p-1] == '"' || @buf[@p-1] == '\'' then SET(@aval, @p-1)
+                if @buf[@p-1] == DOUBLE_QUOTE || @buf[@p-1] == SINGLE_QUOTE then SET(@aval, @p-1)
                 else SET(@aval, @p); end
                     end
                     begin
