@@ -92,20 +92,20 @@ class HpricotScanner
 
     def SET(n, e)
         mark = 0
-        case n
-            when @tag:
+        case n.object_id
+            when @tag.object_id:
                 if @mark_tag == -1 or e == @mark_tag then
                     @tag[0] = ''
                 elsif e > @mark_tag then
                     @tag[0] = @buf[@mark_tag, e - @mark_tag]
                 end
-            when @akey:
+            when @akey.object_id:
                 if @mark_akey == -1 or e == @mark_akey then
                     @akey[0] = ''
                 elsif e > @mark_akey then
                     @akey[0] = @buf[@mark_akey, e - @mark_akey]
                 end
-            when @aval:
+            when @aval.object_id:
                 if @mark_aval == -1 or e == @mark_aval then
                     @aval[0] = ''
                 elsif e > @mark_aval then
@@ -119,10 +119,10 @@ class HpricotScanner
             SET(n, e)
         else
             mark = 0
-            case n
-                when @tag : mark = @mark_tag
-                when @akey: mark = @mark_akey
-                when @aval: mark = @mark_aval
+            case n.object_id
+                when @tag.object_id : mark = @mark_tag
+                when @akey.object_id: mark = @mark_akey
+                when @aval.object_id: mark = @mark_aval
             end
             n << @buf[mark, e - mark]
         end
@@ -131,17 +131,17 @@ class HpricotScanner
     def SLIDE(n)
         mark = 0
 
-        case n
-            when @tag : mark = @mark_tag
-            when @akey: mark = @mark_akey
-            when @aval: mark = @mark_aval
+        case n.object_id
+            when @tag.object_id : mark = @mark_tag
+            when @akey.object_id: mark = @mark_akey
+            when @aval.object_id: mark = @mark_aval
         end
 
         if mark > @ts then
-            case n
-                when @tag : @mark_tag  -= @ts
-                when @akey: @mark_akey -= @ts
-                when @aval: @mark_aval -= @ts
+            case n.object_id
+                when @tag.object_id : @mark_tag  -= @ts
+                when @akey.object_id: @mark_akey -= @ts
+                when @aval.object_id: @mark_aval -= @ts
             end
         end
 
