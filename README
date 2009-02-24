@@ -17,5 +17,8 @@ Ok so now what is the point of hpricot-pure? Well, as I have said I was bored,
 there is really nothing much to say. But I can't exclude that someone may find 
 it useful :)
 
-NOTE: fast_xs is still missing, which means all the tests where XML/HTML 
-character escaping matters will fail until I get it done.
+NOTE: there is a known bug! Actually, when the source string/io does not fit 
+in the buffer, hpricot-pure skips a character when reading the next chunk of 
+data. I'm still not sure if this is a bug introduced by the ragel-generated 
+code or if I'm missing something, but it is indeed worth of an in-depth 
+examination.
