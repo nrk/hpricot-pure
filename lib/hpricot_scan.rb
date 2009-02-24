@@ -48,7 +48,7 @@ class HpricotScanner
         raw = tag if sym == :text
         ary = [sym, tag, attr, raw]
 
-        if taint
+        if taint then
             ary.taint
             tag.taint
             attr.taint
@@ -63,7 +63,7 @@ class HpricotScanner
             raw_string = nil
             @ele_open, @text = false, false
 
-            if (@ts != -1 && n != :cdata && n != :text && n != :procins && n != :comment) then
+            if @ts != -1 && n != :cdata && n != :text && n != :procins && n != :comment then
                 raw_string = @buf[@ts, @te - @ts]
             end
 
@@ -166,7 +166,7 @@ class HpricotScanner
     end
 
     def rb_raise(error, message)
-        raise error, message;
+        raise error, message
     end
 
     def rb_str_new2(s)
