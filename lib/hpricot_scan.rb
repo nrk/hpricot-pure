@@ -124,7 +124,7 @@ class HpricotScanner
                 when @akey.object_id: mark = @mark_akey
                 when @aval.object_id: mark = @mark_aval
             end
-            n << @buf[mark, e - mark]
+            n[0] << @buf[mark, e - mark]
         end
     end
 
