@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# -*- encoding: utf-8 -*- 
 
 require 'test/unit'
 require 'hpricot-pure'
@@ -304,12 +305,6 @@ class TestParser < Test::Unit::TestCase
     doc = Hpricot("<?php print('hello') ?>\n<?xml blah='blah'?>")
     assert_equal "php", doc.children[0].target
     assert_equal "blah='blah'", doc.children[2].content
-  end
-
-  def test_buffer_error
-    assert_raise Hpricot::ParseError, "ran out of buffer space on element <input>, starting on line 3." do
-      Hpricot(%{<p>\n\n<input type="hidden" name="__VIEWSTATE"  value="#{(("X" * 2000) + "\n") * 22}" />\n\n</p>})
-    end
   end
 
   def test_youtube_attr

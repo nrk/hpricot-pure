@@ -85,9 +85,10 @@ module Hpricot
 
     # XML unescape
     def uxs(str)
-      str.to_s.
-          gsub(/\&\w+;/) { |x| (XChar::PREDEFINED_U[x] || ??).chr }.
-          gsub(/\&\#(\d+);/) { [$1.to_i].pack("U*") }
+        str.to_s.force_encoding('BINARY').
+            gsub(/\&\w+;/) { |x| (PREDEFINED_U[x] || ??).chr }.
+            gsub(/\&\#(\d+);/) { [$1.to_i].pack("U*") }.
+            force_encoding('UTF-8')
     end
   end
 end

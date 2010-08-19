@@ -168,7 +168,7 @@ module Hpricot
         end
         x.parent.replace_child(x, wrap)
         nest = nest.children.first until nest.empty?
-        nest.html(nest.children + [x])
+        nest.html([x])
       end
     end
 
@@ -275,7 +275,7 @@ module Hpricot
             expr = $'
             m.compact!
             if m[0] == '@'
-                m[0] = "@#{m.slice!(2,1)}"
+                m[0] = "@#{m.slice!(2,1).join}"
             end
 
             if m[0] == '[' && m[1] =~ /^\d+$/
@@ -300,10 +300,10 @@ module Hpricot
                         args = m[1..-1]
                     end
                 end
-                i = -1
+                args << -1
                 nodes = Elements[*nodes.find_all do |x| 
-                                      i += 1
-                                      x.send(meth, *([*args] + [i])) ? truth : !truth
+                                      args[-1] += 1
+                                      x.send(meth, *args) ? truth : !truth
                                   end]
             end
         end
@@ -422,7 +422,7 @@ module Hpricot
       case arg 
       when 'even'; (parent.containers.index(self) + 1) % 2 == 0
       when 'odd';  (parent.containers.index(self) + 1) % 2 == 1
-      else         self == (parent.containers[arg.to_i + 1])
+      else         self == (parent.containers[arg.to_i - 1])
       end
     end
 
@@ -446,23 +446,23 @@ module Hpricot
       parent.containers.length == 1
     end
 
-    filter :parent do
+    filter :parent do |*a|
       containers.length > 0
     end
 
-    filter :empty do
+    filter :empty do |*a|
       containers.length == 0
     end
 
-    filter :root do
+    filter :root do |*a|
       self.is_a? Hpricot::Doc
     end
     
-    filter 'text' do
+    filter 'text' do |*a|
       self.text?
     end
 
-    filter 'comment' do
+    filter 'comment' do |*a|
       self.comment?
     end
 
